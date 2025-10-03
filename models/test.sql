@@ -1,5 +1,5 @@
-select * from {{ source('DBT_SRC_DEMO', 'bike') }}
+-- {{ config(materialized='table') }}
 
-limit  10
-
---select * from {{ref('my_second_dbt_model')}}
+-- SELECT *
+-- FROM {{ source('DBT_SRC_DEMO', 'bike') }}
+-- LIMIT 10

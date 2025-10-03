@@ -1,0 +1,14 @@
+with cte as (
+
+select 
+to_timestamp(STARTED_AT) AS STARTED_AT
+,date(to_timestamp(STARTED_AT)) AS DATE_STARTED_AT
+,hour(to_timestamp(STARTED_AT)) AS HOUR_STARTED_AT
+,{{DAY_TYPE('STARTED_AT')}} AS DAY_TYPE
+,{{get_season('STARTED_AT')}} AS STATION_OF_YEAR
+from 
+{{ source('DBT_SRC_DEMO', 'bike') }}
+where STARTED_AT <>'started_at'
+)
+
+select * from cte
